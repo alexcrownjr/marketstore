@@ -123,8 +123,6 @@ func (s *StreamTrigger) Fire(keyPath string, records []trigger.Record) {
 
 		// handle the 1D bar case to aggregate based on calendar
 		if tf.Duration >= 24*time.Hour && strings.EqualFold(s.filter, "nasdaq") {
-			deadline = calendar.Nasdaq.MarketClose(end)
-		} else {
 			ceiling := timeWindow.Ceil(end)
 			deadline = &ceiling
 		}
